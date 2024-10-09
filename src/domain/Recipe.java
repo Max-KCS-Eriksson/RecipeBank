@@ -10,7 +10,10 @@ public class Recipe {
     private List<String> instructions;
 
     public Recipe(String title, List<Ingredient> ingredients, List<String> instructions) {
-        this.title = title;
+        if (title.isBlank()) {
+            throw new IllegalArgumentException("Recipe title cannot be empty");
+        }
+        this.title = title.toLowerCase();
         this.ingredients = ingredients;
         this.instructions = instructions;
     }

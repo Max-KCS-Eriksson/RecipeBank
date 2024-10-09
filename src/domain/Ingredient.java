@@ -8,7 +8,7 @@ public class Ingredient {
     private MeasurementUnit measurementUnit;
 
     public Ingredient(String name, double quantity, MeasurementUnit measurementUnit) {
-        if (name.isEmpty()) {
+        if (name.isBlank()) {
             throw new IllegalArgumentException("Ingredient name cannot be empty");
         }
         this.name = name.toLowerCase();

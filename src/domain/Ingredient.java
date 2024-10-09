@@ -8,7 +8,7 @@ public class Ingredient {
     private MeasurementUnit measurementUnit;
 
     public Ingredient(String name, double quantity, MeasurementUnit measurementUnit) {
-        this.name = name;
+        this.name = name.toLowerCase();
         this.quantity = quantity;
         this.measurementUnit = measurementUnit;
     }

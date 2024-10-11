@@ -61,4 +61,17 @@ public class SerializeDataFileStorageTest {
     public void testWriteRecipesToFile() throws IOException {
        assertDoesNotThrow(() -> storage.write(recipes));
     }
+
+    @Test
+    public void testReadRecipesFromFile() throws IOException {
+        storage.write(recipes);
+        ArrayList<Recipe> storedRecipes = new ArrayList<>(storage.read());
+
+        for (int i = 0; i < recipes.size(); i++) {
+            String actualTitle = storedRecipes.get(i).getTitle() ;
+            String expectedTitle = recipes.get(i).getTitle();
+            assertEquals(expectedTitle, actualTitle);
+        }
+        assertEquals(recipes.size(), storedRecipes.size());
+    }
 }

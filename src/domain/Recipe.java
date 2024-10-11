@@ -1,9 +1,10 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.List;
 
 /** Recipe */
-public class Recipe {
+public class Recipe implements Serializable {
 
     private String title;
     private List<Ingredient> ingredients;

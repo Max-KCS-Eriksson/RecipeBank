@@ -1,7 +1,9 @@
 package domain;
 
+import java.io.Serializable;
+
 /** Ingredient */
-public class Ingredient {
+public class Ingredient implements Serializable {
 
     private String name;
     private double quantity;

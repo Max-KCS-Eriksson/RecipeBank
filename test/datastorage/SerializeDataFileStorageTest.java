@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class SerializeDataFileStorageTest {
@@ -54,5 +55,10 @@ public class SerializeDataFileStorageTest {
         storage.write(new ArrayList<String>());
 
         assertTrue(file.exists());
+    }
+
+    @Test
+    public void testWriteRecipesToFile() throws IOException {
+       assertDoesNotThrow(() -> storage.write(recipes));
     }
 }

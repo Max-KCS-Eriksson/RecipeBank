@@ -22,10 +22,7 @@ public class SerializeDataFileStorage {
 
     public <T> void write(Collection<T> objects) {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILE))) {
-            for (T object : objects) {
-                // TODO: this might be the problem
-                out.writeObject(object);
-            }
+            out.writeObject(objects);
         } catch (IOException e) {
             throw new UncheckedIOException(e); // Fatal error, but reduce boilerplate with unchecked
         }

@@ -30,4 +30,24 @@ public class Recipe implements Serializable {
     public List<String> getInstructions() {
         return instructions;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append(title.substring(0, 1).toUpperCase() + title.substring(1) + "\n");
+        builder.append("\n");
+        builder.append("Ingredients\n");
+        for (Ingredient ingredient : ingredients) {
+            builder.append(ingredient.toString() + "\n");
+        }
+        builder.append("\n");
+        builder.append("Instructions\n");
+        for (int i = 0; i < instructions.size(); i++) {
+            builder.append((i + 1) + ") " + instructions.get(i));
+            if (i != instructions.size() - 1) {
+                builder.append("\n");
+            }
+        }
+        return builder.toString();
+    }
 }

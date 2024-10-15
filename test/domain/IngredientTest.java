@@ -1,9 +1,9 @@
 package domain;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-
-import org.junit.jupiter.api.Test;
 
 public class IngredientTest {
 
@@ -45,5 +45,21 @@ public class IngredientTest {
         assertThrows(
                 IllegalArgumentException.class,
                 () -> new Ingredient("Cream", quantity, MeasurementUnit.DECILITRES));
+    }
+
+    @Test
+    public void testToStringWithRoundedToTwoDigits() {
+        Ingredient ingredient = new Ingredient("caROT", 2.251111, MeasurementUnit.PIECES);
+        String expected = "Carot: 2.25 pieces";
+
+        assertEquals(expected, ingredient.toString());
+    }
+
+    @Test
+    public void testToStringWithSingleDigit() {
+        Ingredient ingredient = new Ingredient("MILK", 2.5, MeasurementUnit.DECILITRES);
+        String expected = "Milk: 2.5 decilitres";
+
+        assertEquals(expected, ingredient.toString());
     }
 }

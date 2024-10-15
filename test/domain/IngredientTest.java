@@ -62,4 +62,12 @@ public class IngredientTest {
 
         assertEquals(expected, ingredient.toString());
     }
+
+    @Test
+    public void testToStringWithNoDigits() {
+        Ingredient ingredient = new Ingredient("EGGS", 3, MeasurementUnit.PIECES);
+        String expected = "Eggs: 3 pieces";
+
+        assertEquals(expected, ingredient.toString());
+    }
 }

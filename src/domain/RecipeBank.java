@@ -21,7 +21,19 @@ public class RecipeBank {
 
     public void show(Recipe recipe) {}
 
-    public void delete(Recipe recipe) {}
+    public void delete(Recipe target) {
+        ArrayList<Recipe> recipes = new ArrayList<>(STORAGE.read());
+
+        ArrayList<Recipe> tempArr = new ArrayList<>();
+        for (Recipe recipe : recipes) {
+            if (!recipe.getTitle().equals(target.getTitle())) {
+                tempArr.add(recipe);
+            }
+        }
+        recipes = tempArr;
+
+        STORAGE.write(recipes);
+    }
 
     public SerializeDataFileStorage getStorage() {
         return STORAGE;

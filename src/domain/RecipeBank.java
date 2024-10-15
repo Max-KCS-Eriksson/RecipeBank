@@ -11,11 +11,11 @@ public class RecipeBank {
         STORAGE = storage;
     }
 
-    public <T> void add(T object) {}
+    public void add(Recipe recipe) {}
 
-    public <T> void show(T object) {}
+    public void show(Recipe recipe) {}
 
-    public <T> void delete(T object) {}
+    public void delete(Recipe recipe) {}
 
     public SerializeDataFileStorage getStorage() {
         return STORAGE;

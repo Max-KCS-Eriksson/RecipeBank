@@ -56,10 +56,10 @@ public class RecipeTest {
                 Pancakes
 
                 Ingredients
-                Milk: 6.0 decilitres
-                Egg: 3.0 pieces
+                Milk: 5.5 decilitres
+                Egg: 3 pieces
                 Wheat flour: 2.25 decilitres
-                Salt: 2.0, grams
+                Salt: 2 grams
 
                 Instructions
                 1) Mix dry ingredients.
@@ -69,7 +69,7 @@ public class RecipeTest {
 
         String title = "paNcakes";
         List<Ingredient> ingredients = new ArrayList<>();
-        ingredients.add(new Ingredient("milk", 6, MeasurementUnit.DECILITRES));
+        ingredients.add(new Ingredient("milk", 5.5, MeasurementUnit.DECILITRES));
         ingredients.add(new Ingredient("egg", 3, MeasurementUnit.PIECES));
         ingredients.add(new Ingredient("wheat flour", 2.25, MeasurementUnit.DECILITRES));
         ingredients.add(new Ingredient("salt", 2, MeasurementUnit.GRAMS));

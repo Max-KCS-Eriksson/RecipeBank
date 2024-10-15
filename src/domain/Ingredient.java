@@ -32,4 +32,15 @@ public class Ingredient implements Serializable {
     public MeasurementUnit getMeasurementUnit() {
         return this.measurementUnit;
     }
+
+    @Override
+    public String toString() {
+        String nameInitial = this.name.substring(0, 1).toUpperCase();
+        String name = nameInitial + this.name.substring(1);
+        String formatedQuantity = String.format("%.2f", this.quantity);
+        if (formatedQuantity.charAt(formatedQuantity.length() - 1) == '0') {
+            formatedQuantity = String.format("%.1f", this.quantity);
+        }
+        return String.format("%s: %s %s", name, formatedQuantity, this.measurementUnit);
+    }
 }

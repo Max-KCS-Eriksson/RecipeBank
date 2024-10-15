@@ -17,6 +17,7 @@ public class RecipeBankTest {
     private static RecipeBank recipeBank;
     private static ArrayList<Recipe> recipes;
     private static Recipe dummyRecipe;
+    private static Recipe anotherRecipe;
 
     @BeforeAll
     public static void setUp() {
@@ -29,6 +30,7 @@ public class RecipeBankTest {
         ArrayList<String> instructions = new ArrayList<>();
         instructions.add("instruction");
         dummyRecipe = new Recipe("foo", ingredients, instructions);
+        anotherRecipe = new Recipe("bar", ingredients, instructions);
     }
 
     @AfterEach
@@ -52,7 +54,8 @@ public class RecipeBankTest {
     @Test
     public void testDeleteRecipe() {
         recipeBank.add(dummyRecipe);
-        int expectedSize = recipes.size() - 1;
+        recipeBank.add(anotherRecipe);
+        int expectedSize = recipeBank.getStorage().read().size() - 1;
         recipeBank.delete(dummyRecipe);
         int actualSize = recipeBank.getStorage().read().size();
 

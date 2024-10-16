@@ -2,25 +2,24 @@ package datastorage;
 
 import domain.Recipe;
 
+import java.io.File;
 import java.util.ArrayList;
 
 /** RecipeBank */
-public class RecipeBank {
+public class RecipeBank extends SerializeDataFileStorage {
 
-    private final SerializeDataFileStorage STORAGE;
-
-    public RecipeBank(SerializeDataFileStorage storage) {
-        STORAGE = storage;
+    public RecipeBank(final File FILE) {
+        super(FILE);
     }
 
     public void add(Recipe recipe) {
-        ArrayList<Recipe> recipes = new ArrayList<>(STORAGE.read());
+        ArrayList<Recipe> recipes = this.getStorage();
         recipes.add(recipe);
-        STORAGE.write(recipes);
+        this.write(recipes);
     }
 
     public void delete(Recipe target) {
-        ArrayList<Recipe> recipes = new ArrayList<>(STORAGE.read());
+        ArrayList<Recipe> recipes = this.getStorage();
 
         ArrayList<Recipe> tempArr = new ArrayList<>();
         for (Recipe recipe : recipes) {
@@ -30,10 +29,10 @@ public class RecipeBank {
         }
         recipes = tempArr;
 
-        STORAGE.write(recipes);
+        this.write(recipes);
     }
 
-    public SerializeDataFileStorage getStorage() {
-        return STORAGE;
+    public ArrayList<Recipe> getStorage() {
+        return new ArrayList<>(this.read());
     }
 }

@@ -1,10 +1,8 @@
 package datastorage;
 
-import datastorage.SerializeDataFileStorage;
 import domain.Ingredient;
 import domain.MeasurementUnit;
 import domain.Recipe;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,7 +24,7 @@ public class RecipeBankTest {
     @BeforeAll
     public static void setUp() {
         testFile = new File("test.txt");
-        recipeBank = new RecipeBank(new SerializeDataFileStorage(testFile));
+        recipeBank = new RecipeBank(testFile);
         recipes = new ArrayList<>();
 
         ArrayList<Ingredient> ingredients = new ArrayList<>();
@@ -44,7 +42,7 @@ public class RecipeBankTest {
 
     @BeforeEach
     public void resetUp() {
-        recipes = new ArrayList<>(recipeBank.getStorage().read());
+        recipes = new ArrayList<>(recipeBank.read());
     }
 
     @Test
@@ -52,16 +50,16 @@ public class RecipeBankTest {
         int expectedSize = recipes.size() + 1;
         recipeBank.add(dummyRecipe);
 
-        assertEquals(expectedSize, new ArrayList<Recipe>(recipeBank.getStorage().read()).size());
+        assertEquals(expectedSize, new ArrayList<Recipe>(recipeBank.read()).size());
     }
 
     @Test
     public void testDeleteRecipe() {
         recipeBank.add(dummyRecipe);
         recipeBank.add(anotherRecipe);
-        int expectedSize = recipeBank.getStorage().read().size() - 1;
+        int expectedSize = recipeBank.read().size() - 1;
         recipeBank.delete(dummyRecipe);
-        int actualSize = recipeBank.getStorage().read().size();
+        int actualSize = recipeBank.read().size();
 
         assertEquals(expectedSize, actualSize);
     }

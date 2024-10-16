@@ -19,8 +19,6 @@ public class RecipeBank {
         STORAGE.write(recipes);
     }
 
-    public void show(Recipe recipe) {}
-
     public void delete(Recipe target) {
         ArrayList<Recipe> recipes = new ArrayList<>(STORAGE.read());
 

@@ -1,6 +1,10 @@
-package domain;
+package datastorage;
 
 import datastorage.SerializeDataFileStorage;
+import domain.Ingredient;
+import domain.MeasurementUnit;
+import domain.Recipe;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;

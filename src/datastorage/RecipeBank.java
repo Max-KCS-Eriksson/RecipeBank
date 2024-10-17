@@ -12,6 +12,10 @@ public class RecipeBank extends SerializeDataFileStorage {
         super(FILE);
     }
 
+    public RecipeBank(final String FILE_NAME) {
+        this(new File(FILE_NAME));
+    }
+
     public void add(Recipe recipe) {
         ArrayList<Recipe> recipes = this.getStorage();
         recipes.add(recipe);

@@ -13,7 +13,7 @@ public class TUIInput {
 
     public String inputString(String prompt) {
         System.out.print(prompt + " > ");
-        return SCANNER.nextLine();
+        return SCANNER.nextLine().trim();
     }
 
     public int inputInt(String prompt) {

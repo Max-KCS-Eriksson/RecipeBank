@@ -29,7 +29,8 @@ public class TUIInput {
     public double inputDouble(String prompt) {
         while (true) {
             try {
-                return Double.parseDouble(inputString(prompt));
+                String localeCorrection = inputString(prompt).replace(",", ".");
+                return Double.parseDouble(localeCorrection);
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input - only accept numerics. Try again.");
             }

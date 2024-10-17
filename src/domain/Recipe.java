@@ -10,6 +10,10 @@ public class Recipe implements Serializable {
     private List<Ingredient> ingredients;
     private List<String> instructions;
 
+    public Recipe() {
+        super();
+    }
+
     public Recipe(String title, List<Ingredient> ingredients, List<String> instructions) {
         setTitle(title);
         setIngredients(ingredients);

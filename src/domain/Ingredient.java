@@ -10,27 +10,39 @@ public class Ingredient implements Serializable {
     private MeasurementUnit measurementUnit;
 
     public Ingredient(String name, double quantity, MeasurementUnit measurementUnit) {
-        if (name.isBlank()) {
-            throw new IllegalArgumentException("Ingredient name cannot be empty");
-        }
-        if (quantity <= 0) {
-            throw new IllegalArgumentException("Ingredient quantity must be greatar than 0");
-        }
-        this.name = name.toLowerCase();
-        this.quantity = quantity;
-        this.measurementUnit = measurementUnit;
+        setName(name);
+        setQuantity(quantity);
+        setMeasurementUnit(measurementUnit);
     }
 
     public String getName() {
         return this.name;
     }
 
+    public void setName(String name) {
+        if (name.isBlank()) {
+            throw new IllegalArgumentException("Ingredient name cannot be empty");
+        }
+        this.name = name.toLowerCase();
+    }
+
     public double getQuantity() {
         return this.quantity;
     }
 
+    public void setQuantity(double quantity) {
+        if (quantity <= 0) {
+            throw new IllegalArgumentException("Ingredient quantity must be greatar than 0");
+        }
+        this.quantity = quantity;
+    }
+
     public MeasurementUnit getMeasurementUnit() {
         return this.measurementUnit;
+    }
+
+    public void setMeasurementUnit(MeasurementUnit measurementUnit) {
+        this.measurementUnit = measurementUnit;
     }
 
     @Override

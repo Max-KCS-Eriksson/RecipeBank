@@ -9,6 +9,10 @@ public class Ingredient implements Serializable {
     private double quantity;
     private MeasurementUnit measurementUnit;
 
+    public Ingredient() {
+        super();
+    }
+
     public Ingredient(String name, double quantity, MeasurementUnit measurementUnit) {
         setName(name);
         setQuantity(quantity);

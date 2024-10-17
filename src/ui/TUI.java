@@ -27,7 +27,7 @@ public class TUI {
                 case 2 -> show();
                 case 3 -> delete();
                 case 0 -> isRunning = false;
-                default -> System.out.println("Invalid menu choice. Please try again.");
+                default -> System.out.println("Invalid menu choice. Please try again.\n");
             }
         } while (isRunning);
 

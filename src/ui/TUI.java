@@ -2,7 +2,13 @@ package ui;
 
 import datastorage.RecipeBank;
 
+import domain.Ingredient;
+import domain.MeasurementUnit;
+import domain.Recipe;
+
 import ui.util.TUIInput;
+
+import java.util.ArrayList;
 
 /** TUI */
 public class TUI {
@@ -43,7 +49,115 @@ public class TUI {
     }
 
     private void add() {
-        System.out.println("WARN: NOT IMPLEMENTED\n"); // TODO: IMPLEMENT
+        Recipe recipe = new Recipe();
+        System.out.println("\nRecipe");
+
+        boolean validInput = false;
+        while (!validInput) {
+            try {
+                recipe.setTitle(scanner.inputString("Title"));
+                validInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage() + ". Try again.");
+            }
+        }
+
+        ArrayList<Ingredient> ingredients = new ArrayList<>();
+        int minimumIngredients = 2;
+        while (ingredients.size() < minimumIngredients) {
+            ingredients.add(addIngredient());
+        }
+        boolean addIngredients = true;
+        while (addIngredients) {
+            String input = scanner.inputString("\nMore ingredients? (y/n)");
+            if (input.equals("y") || input.equals("yes")) {
+                ingredients.add(addIngredient());
+            } else if (input.equals("n") || input.equals("no")) {
+                addIngredients = false;
+            }
+        }
+        recipe.setIngredients(ingredients);
+
+        System.out.println("\nInstructions");
+        ArrayList<String> instructions = new ArrayList<>();
+        int minimumInstructions = 2;
+        int i;
+        for (i = 0; i < minimumInstructions; i++) {
+            String inputPrompt = (i + 1) + " ";
+            instructions.add(addInstruction(inputPrompt));
+        }
+        boolean addInstructions = true;
+        while (addInstructions) {
+            String input = scanner.inputString("\nMore instructions? (y/n)");
+            if (input.equals("y") || input.equals("yes")) {
+                String inputPrompt = (i + 1) + " ";
+                instructions.add(addInstruction(inputPrompt));
+                i++;
+            } else if (input.equals("n") || input.equals("no")) {
+                addInstructions = false;
+            }
+        }
+        recipe.setInstructions(instructions);
+
+        recipeBank.add(recipe);
+    }
+
+    private Ingredient addIngredient() {
+        Ingredient ingredient = new Ingredient();
+        System.out.println("\nIngredient");
+
+        boolean validInput = false;
+        while (!validInput) {
+            try {
+                ingredient.setName(scanner.inputString("Name"));
+                validInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage() + ". Try again.");
+            }
+        }
+
+        validInput = false;
+        while (!validInput) {
+            try {
+                ingredient.setQuantity(scanner.inputDouble("Quantity"));
+                validInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage() + ". Try again.");
+            }
+        }
+
+        MeasurementUnit[] measurementUnits = {
+            MeasurementUnit.DECILITRES, MeasurementUnit.GRAMS, MeasurementUnit.PIECES,
+        };
+        boolean validChoice = false;
+        do {
+            System.out.println("Measurement unit from below list:");
+            for (int i = 0; i < measurementUnits.length; i++) {
+                System.out.println((i + 1) + ")\t" + measurementUnits[i]);
+            }
+            int choice = scanner.inputInt("Choice");
+            if (choice - 1 < measurementUnits.length) {
+                ingredient.setMeasurementUnit(measurementUnits[choice - 1]);
+                validChoice = true;
+            } else {
+                System.out.println("Invalid choice. Please try again.\n");
+            }
+        } while (!validChoice);
+
+        return ingredient;
+    }
+
+    private String addInstruction(String inputPrompt) {
+        String instruction;
+        boolean valid = false;
+        do {
+            instruction = scanner.inputString(inputPrompt);
+            valid = !instruction.isBlank();
+            if (!valid) {
+                System.out.println("Instruction can't be blank. Please Try again.");
+            }
+        } while (!valid);
+        return instruction;
     }
 
     private void show() {

@@ -1,12 +1,12 @@
 package ui;
 
-import java.util.Scanner;
+import ui.util.TUIInput;
 
 /** TUI */
 public class TUI {
 
     private boolean isRunning;
-    private Scanner scanner = new Scanner(System.in);
+    private TUIInput scanner = new TUIInput();
 
     public void run() {
         System.out.println("Welcome to the Recipe Bank!\n");
@@ -21,8 +21,7 @@ public class TUI {
             3)\tDelete
             0)\tExit the Recipe Bank
             """);
-            System.out.print("Choice > ");
-            int menuChoice = Integer.parseInt(scanner.nextLine());
+            int menuChoice = scanner.inputInt("Choice");
             switch (menuChoice) {
                 case 1 -> add();
                 case 2 -> show();

@@ -1,5 +1,7 @@
 package ui;
 
+import datastorage.RecipeBank;
+
 import ui.util.TUIInput;
 
 /** TUI */
@@ -7,6 +9,11 @@ public class TUI {
 
     private boolean isRunning;
     private TUIInput scanner = new TUIInput();
+    private RecipeBank recipeBank;
+
+    public TUI(RecipeBank recipeBank) {
+        this.recipeBank = recipeBank;
+    }
 
     public void run() {
         System.out.println("Welcome to the Recipe Bank!\n");

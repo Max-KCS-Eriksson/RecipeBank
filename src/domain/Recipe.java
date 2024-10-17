@@ -11,24 +11,36 @@ public class Recipe implements Serializable {
     private List<String> instructions;
 
     public Recipe(String title, List<Ingredient> ingredients, List<String> instructions) {
-        if (title.isBlank()) {
-            throw new IllegalArgumentException("Recipe title cannot be empty");
-        }
-        this.title = title.toLowerCase();
-        this.ingredients = ingredients;
-        this.instructions = instructions;
+        setTitle(title);
+        setIngredients(ingredients);
+        setInstructions(instructions);
     }
 
     public String getTitle() {
         return title;
     }
 
+    public void setTitle(String title) {
+        if (title.isBlank()) {
+            throw new IllegalArgumentException("Recipe title cannot be empty");
+        }
+        this.title = title.toLowerCase();
+    }
+
     public List<Ingredient> getIngredients() {
         return ingredients;
     }
 
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
+
     public List<String> getInstructions() {
         return instructions;
+    }
+
+    public void setInstructions(List<String> instructions) {
+        this.instructions = instructions;
     }
 
     @Override

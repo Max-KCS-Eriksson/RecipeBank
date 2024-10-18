@@ -164,13 +164,14 @@ public class TUI {
 
     private void show() {
         List<Recipe> recipes = recipeBank.getStorage();
+        System.out.println("\nRecipes:");
         if (recipes.size() == 0) {
-            System.out.println("No recipes stored yet\n");
+            System.out.println("No recipes stored yet.\n");
             return;
         }
         for (int i = 0; i < recipes.size(); i++) {
             String name = toInitialUpperCase(recipes.get(i).getName());
-            System.out.println((i + 1) + "\t" + name);
+            System.out.println((i + 1) + ")\t" + name);
         }
 
         // TODO: Select recipe by title

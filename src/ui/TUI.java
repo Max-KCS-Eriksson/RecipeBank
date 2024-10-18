@@ -185,6 +185,16 @@ public class TUI {
         System.out.println("WARN: NOT IMPLEMENTED\n"); // TODO: IMPLEMENT
     }
 
+    private <T> T selectFromList(List<T> list) {
+        while (true) {
+            try {
+                return list.get(scanner.inputInt("Choice") - 1);
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("Invalid choice. Try again.");
+            }
+        }
+    }
+
     private String toInitialUpperCase(String string) {
         return string.substring(0, 1).toUpperCase() + string.substring(1);
     }

@@ -9,6 +9,7 @@ import domain.Recipe;
 import ui.util.TUIInput;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /** TUI */
 public class TUI {
@@ -162,6 +163,20 @@ public class TUI {
     }
 
     private void show() {
+        List<Recipe> recipes = recipeBank.getStorage();
+        if (recipes.size() == 0) {
+            System.out.println("No recipes stored yet\n");
+            return;
+        }
+        for (int i = 0; i < recipes.size(); i++) {
+            String name = toInitialUpperCase(recipes.get(i).getName());
+            System.out.println((i + 1) + "\t" + name);
+        }
+
+        // TODO: Select recipe by title
+
+        // TODO: Choose between listing all ingredients, or the recipe as a whole (`sout(recipe)`)
+
         System.out.println("WARN: NOT IMPLEMENTED\n"); // TODO: IMPLEMENT
     }
 

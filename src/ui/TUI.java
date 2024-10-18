@@ -198,7 +198,16 @@ public class TUI {
     }
 
     private void delete() {
-        System.out.println("WARN: NOT IMPLEMENTED\n"); // TODO: IMPLEMENT
+        Optional<Recipe> optional = selectRecipeFromStorage();
+        Recipe recipe;
+        try {
+            recipe = optional.get();
+        } catch (NoSuchElementException e) {
+            return;
+        }
+
+        recipeBank.delete(recipe);
+        System.out.println("\n" + toInitialUpperCase(recipe.getName()) + " Recipe was deleted.\n");
     }
 
     private Optional<Recipe> selectRecipeFromStorage() {

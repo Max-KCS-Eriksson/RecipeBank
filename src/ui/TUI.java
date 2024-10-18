@@ -28,12 +28,12 @@ public class TUI {
         do {
             System.out.println(
                     """
-            What would you like to do with recipes?
-            1)\tAdd
-            2)\tShow
-            3)\tDelete
-            0)\tExit the Recipe Bank
-            """);
+                    What would you like to do with recipes?
+                    1)\tAdd
+                    2)\tShow
+                    3)\tDelete
+                    0)\tExit the Recipe Bank
+                    """);
             int menuChoice = scanner.inputInt("Choice");
             switch (menuChoice) {
                 case 1 -> add();

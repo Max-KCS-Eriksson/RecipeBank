@@ -9,6 +9,7 @@ import domain.Recipe;
 import ui.util.TUIInput;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /** TUI */
@@ -177,13 +178,35 @@ public class TUI {
         System.out.println("\nSelect recipe from above list.");
         Recipe recipe = selectFromList(recipes);
 
-        // TODO: Choose between listing all ingredients, or the recipe as a whole (`sout(recipe)`)
+        System.out.printf(
+                "\nWhat would you like to do with the %s recipe?\n",
+                toInitialUpperCase(recipe.getName()));
+        String[] choices = {"Show the full recipe", "List all ingredients"};
+        for (int i = 0; i < choices.length; i++) {
+            System.out.println((i + 1) + ") " + choices[i]);
+        }
+        System.out.println(); // Output format
+
+        String choice = selectFromList(choices);
+        if (choice.equals(choices[0])) {
+            System.out.println(recipe);
+        } else if (choice.equals(choices[0])) {
+            List<Ingredient> ingredients = recipe.getIngredients();
+            for (Ingredient ingredient : ingredients) {
+                System.out.println(ingredient); // FIX: Not printing out ingredients
+            }
+        }
+        System.out.println(); // Output format
 
         System.out.println("WARN: NOT IMPLEMENTED\n"); // TODO: IMPLEMENT
     }
 
     private void delete() {
         System.out.println("WARN: NOT IMPLEMENTED\n"); // TODO: IMPLEMENT
+    }
+
+    private <T> T selectFromList(T[] arr) {
+        return selectFromList(Arrays.asList(arr));
     }
 
     private <T> T selectFromList(List<T> list) {

@@ -190,10 +190,10 @@ public class TUI {
         String choice = selectFromList(choices);
         if (choice.equals(choices[0])) {
             System.out.println(recipe);
-        } else if (choice.equals(choices[0])) {
+        } else if (choice.equals(choices[1])) {
             List<Ingredient> ingredients = recipe.getIngredients();
             for (Ingredient ingredient : ingredients) {
-                System.out.println(ingredient); // FIX: Not printing out ingredients
+                System.out.println(ingredient);
             }
         }
         System.out.println(); // Output format

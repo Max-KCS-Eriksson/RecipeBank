@@ -133,7 +133,8 @@ public class TUI {
         do {
             System.out.println("Measurement unit from below list:");
             for (int i = 0; i < measurementUnits.length; i++) {
-                System.out.println((i + 1) + ")\t" + measurementUnits[i]);
+                System.out.println(
+                        (i + 1) + ")\t" + toInitialUpperCase(measurementUnits[i].toString()));
             }
             int choice = scanner.inputInt("Choice");
             if (choice - 1 < measurementUnits.length) {

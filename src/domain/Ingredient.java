@@ -1,9 +1,8 @@
 package domain;
 
-import java.io.Serializable;
 
 /** Ingredient */
-public class Ingredient extends NamedObject implements Serializable {
+public class Ingredient extends NamedObject {
 
     private double quantity;
     private MeasurementUnit measurementUnit;

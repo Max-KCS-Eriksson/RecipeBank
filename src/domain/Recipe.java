@@ -1,10 +1,9 @@
 package domain;
 
-import java.io.Serializable;
 import java.util.List;
 
 /** Recipe */
-public class Recipe extends NamedObject implements Serializable {
+public class Recipe extends NamedObject {
 
     private List<Ingredient> ingredients;
     private List<String> instructions;

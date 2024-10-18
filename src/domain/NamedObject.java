@@ -1,7 +1,9 @@
 package domain;
 
+import java.io.Serializable;
+
 /** NamedObject */
-public abstract class NamedObject {
+public abstract class NamedObject implements Serializable {
 
     protected String name;
 

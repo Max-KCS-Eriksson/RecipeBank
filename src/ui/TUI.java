@@ -191,6 +191,7 @@ public class TUI {
         if (choice.equals(choices[0])) {
             System.out.println(recipe);
         } else if (choice.equals(choices[1])) {
+            System.out.println(toInitialUpperCase(recipe.getName()) + " Ingredients\n");
             List<Ingredient> ingredients = recipe.getIngredients();
             for (Ingredient ingredient : ingredients) {
                 System.out.println(ingredient);

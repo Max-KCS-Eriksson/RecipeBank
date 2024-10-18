@@ -3,9 +3,8 @@ package domain;
 import java.io.Serializable;
 
 /** Ingredient */
-public class Ingredient implements Serializable {
+public class Ingredient extends NamedObject implements Serializable {
 
-    private String name;
     private double quantity;
     private MeasurementUnit measurementUnit;
 
@@ -17,17 +16,6 @@ public class Ingredient implements Serializable {
         setName(name);
         setQuantity(quantity);
         setMeasurementUnit(measurementUnit);
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        if (name.isBlank()) {
-            throw new IllegalArgumentException("Ingredient name cannot be empty");
-        }
-        this.name = name.toLowerCase();
     }
 
     public double getQuantity() {

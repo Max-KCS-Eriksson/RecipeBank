@@ -1,0 +1,20 @@
+package domain;
+
+/** NamedObject */
+public abstract class NamedObject {
+
+    protected String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        if (name.isBlank()) {
+            String[] classPath = getClass().toString().split("\\.");
+            throw new IllegalArgumentException(
+                    classPath[classPath.length - 1] + " name cannot be empty");
+        }
+        this.name = name.toLowerCase();
+    }
+}

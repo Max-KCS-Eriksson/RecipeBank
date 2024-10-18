@@ -4,9 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 
 /** Recipe */
-public class Recipe implements Serializable {
+public class Recipe extends NamedObject implements Serializable {
 
-    private String name;
     private List<Ingredient> ingredients;
     private List<String> instructions;
 
@@ -18,17 +17,6 @@ public class Recipe implements Serializable {
         setName(name);
         setIngredients(ingredients);
         setInstructions(instructions);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        if (name.isBlank()) {
-            throw new IllegalArgumentException("Recipe name cannot be empty");
-        }
-        this.name = name.toLowerCase();
     }
 
     public List<Ingredient> getIngredients() {

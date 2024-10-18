@@ -11,6 +11,7 @@ import ui.util.TUIInput;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 /** TUI */
 public class TUI {
@@ -164,19 +165,8 @@ public class TUI {
     }
 
     private void show() {
-        List<Recipe> recipes = recipeBank.getStorage();
-        System.out.println("\nRecipes:");
-        if (recipes.size() == 0) {
-            System.out.println("No recipes stored yet.\n");
-            return;
-        }
-        for (int i = 0; i < recipes.size(); i++) {
-            String name = toInitialUpperCase(recipes.get(i).getName());
-            System.out.println((i + 1) + ")\t" + name);
-        }
-
-        System.out.println("\nSelect recipe from above list.");
-        Recipe recipe = selectFromList(recipes);
+        Optional<Recipe> optional = selectRecipeFromStorage();
+        Recipe recipe = optional.get(); // FIX: Ensure a `Recipe` value
 
         System.out.printf(
                 "\nWhat would you like to do with the %s recipe?\n",
@@ -203,6 +193,24 @@ public class TUI {
 
     private void delete() {
         System.out.println("WARN: NOT IMPLEMENTED\n"); // TODO: IMPLEMENT
+    }
+
+    private Optional<Recipe> selectRecipeFromStorage() {
+        List<Recipe> recipes = recipeBank.getStorage();
+        System.out.println("\nRecipes:");
+        if (recipes.size() == 0) {
+            System.out.println("No recipes stored yet.\n");
+            return Optional.empty();
+        }
+        for (int i = 0; i < recipes.size(); i++) {
+            String name = toInitialUpperCase(recipes.get(i).getName());
+            System.out.println((i + 1) + ")\t" + name);
+        }
+
+        System.out.println("\nSelect recipe from above list.");
+        Recipe recipe = selectFromList(recipes);
+
+        return Optional.of(recipe);
     }
 
     private <T> int pickListIndex(T[] arr) {

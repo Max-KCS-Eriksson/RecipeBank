@@ -167,4 +167,8 @@ public class TUI {
     private void delete() {
         System.out.println("WARN: NOT IMPLEMENTED\n"); // TODO: IMPLEMENT
     }
+
+    private String toInitialUpperCase(String string) {
+        return string.substring(0, 1).toUpperCase() + string.substring(1);
+    }
 }

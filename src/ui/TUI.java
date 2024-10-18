@@ -187,23 +187,40 @@ public class TUI {
         }
         System.out.println(); // Output format
 
-        String choice = selectFromList(choices);
-        if (choice.equals(choices[0])) {
-            System.out.println(recipe);
-        } else if (choice.equals(choices[1])) {
-            System.out.println(toInitialUpperCase(recipe.getName()) + " Ingredients\n");
-            List<Ingredient> ingredients = recipe.getIngredients();
-            for (Ingredient ingredient : ingredients) {
-                System.out.println(ingredient);
+        int choice = pickListIndex(choices) + 1;
+        switch (choice) {
+            case 1 -> System.out.println(recipe);
+            case 2 -> { // FIX: "Invalid choice. Please try again." when `2` is input. Off by 1?
+                System.out.println(toInitialUpperCase(recipe.getName()) + " Ingredients\n");
+                List<Ingredient> ingredients = recipe.getIngredients();
+                for (Ingredient ingredient : ingredients) {
+                    System.out.println(ingredient);
+                }
+                // NOTE: Refactor listing all ingredients to generic method and use on listing
+                // recipes also.
+                // <T extends NamedObject> T
             }
         }
         System.out.println(); // Output format
-
-        System.out.println("WARN: NOT IMPLEMENTED\n"); // TODO: IMPLEMENT
     }
 
     private void delete() {
         System.out.println("WARN: NOT IMPLEMENTED\n"); // TODO: IMPLEMENT
+    }
+
+    private <T> int pickListIndex(T[] arr) {
+        return pickListIndex(Arrays.asList(arr));
+    }
+
+    private <T> int pickListIndex(List<T> list) {
+        while (true) {
+            int index = scanner.inputInt("Choice");
+            if (index >= 0 && index < list.size()) {
+                return index;
+            } else {
+                System.out.println("Invalid choice. Please try again.");
+            }
+        }
     }
 
     private <T> T selectFromList(T[] arr) {

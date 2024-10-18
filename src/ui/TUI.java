@@ -174,7 +174,8 @@ public class TUI {
             System.out.println((i + 1) + ")\t" + name);
         }
 
-        // TODO: Select recipe by title
+        System.out.println("\nSelect recipe from above list.");
+        Recipe recipe = selectFromList(recipes);
 
         // TODO: Choose between listing all ingredients, or the recipe as a whole (`sout(recipe)`)
 

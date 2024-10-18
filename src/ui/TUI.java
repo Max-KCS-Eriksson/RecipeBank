@@ -187,10 +187,10 @@ public class TUI {
         }
         System.out.println(); // Output format
 
-        int choice = pickListIndex(choices) + 1;
-        switch (choice) {
+        int choice = pickListIndex(choices);
+        switch (choice + 1) {
             case 1 -> System.out.println(recipe);
-            case 2 -> { // FIX: "Invalid choice. Please try again." when `2` is input. Off by 1?
+            case 2 -> {
                 System.out.println(toInitialUpperCase(recipe.getName()) + " Ingredients\n");
                 List<Ingredient> ingredients = recipe.getIngredients();
                 for (Ingredient ingredient : ingredients) {
@@ -214,7 +214,7 @@ public class TUI {
 
     private <T> int pickListIndex(List<T> list) {
         while (true) {
-            int index = scanner.inputInt("Choice");
+            int index = scanner.inputInt("Choice") - 1;
             if (index >= 0 && index < list.size()) {
                 return index;
             } else {

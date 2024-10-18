@@ -55,7 +55,7 @@ public class TUI {
         boolean validInput = false;
         while (!validInput) {
             try {
-                recipe.setTitle(scanner.inputString("Title"));
+                recipe.setName(scanner.inputString("Title"));
                 validInput = true;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage() + ". Try again.");

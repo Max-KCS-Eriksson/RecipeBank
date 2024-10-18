@@ -6,7 +6,7 @@ import java.util.List;
 /** Recipe */
 public class Recipe implements Serializable {
 
-    private String title;
+    private String name;
     private List<Ingredient> ingredients;
     private List<String> instructions;
 
@@ -14,21 +14,21 @@ public class Recipe implements Serializable {
         super();
     }
 
-    public Recipe(String title, List<Ingredient> ingredients, List<String> instructions) {
-        setTitle(title);
+    public Recipe(String name, List<Ingredient> ingredients, List<String> instructions) {
+        setName(name);
         setIngredients(ingredients);
         setInstructions(instructions);
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        if (title.isBlank()) {
-            throw new IllegalArgumentException("Recipe title cannot be empty");
+    public void setName(String name) {
+        if (name.isBlank()) {
+            throw new IllegalArgumentException("Recipe name cannot be empty");
         }
-        this.title = title.toLowerCase();
+        this.name = name.toLowerCase();
     }
 
     public List<Ingredient> getIngredients() {
@@ -50,7 +50,7 @@ public class Recipe implements Serializable {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append(title.substring(0, 1).toUpperCase() + title.substring(1) + "\n");
+        builder.append(name.substring(0, 1).toUpperCase() + name.substring(1) + "\n");
         builder.append("\n");
         builder.append("Ingredients\n");
         for (Ingredient ingredient : ingredients) {

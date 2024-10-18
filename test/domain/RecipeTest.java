@@ -21,7 +21,7 @@ public class RecipeTest {
 
         Recipe ingredient = new Recipe(title, ingredients, instructions);
 
-        assertEquals(title.toLowerCase(), ingredient.getTitle());
+        assertEquals(title.toLowerCase(), ingredient.getName());
     }
 
     @Test

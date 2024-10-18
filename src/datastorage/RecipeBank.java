@@ -27,7 +27,7 @@ public class RecipeBank extends SerializeDataFileStorage {
 
         ArrayList<Recipe> tempArr = new ArrayList<>();
         for (Recipe recipe : recipes) {
-            if (!recipe.getTitle().equals(target.getTitle())) {
+            if (!recipe.getName().equals(target.getName())) {
                 tempArr.add(recipe);
             }
         }

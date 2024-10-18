@@ -196,9 +196,6 @@ public class TUI {
                 for (Ingredient ingredient : ingredients) {
                     System.out.println(ingredient);
                 }
-                // NOTE: Refactor listing all ingredients to generic method and use on listing
-                // recipes also.
-                // <T extends NamedObject> T
             }
         }
         System.out.println(); // Output format

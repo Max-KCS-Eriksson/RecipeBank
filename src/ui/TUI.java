@@ -11,6 +11,7 @@ import ui.util.TUIInput;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 /** TUI */
@@ -166,7 +167,12 @@ public class TUI {
 
     private void show() {
         Optional<Recipe> optional = selectRecipeFromStorage();
-        Recipe recipe = optional.get(); // FIX: Ensure a `Recipe` value
+        Recipe recipe;
+        try {
+            recipe = optional.get();
+        } catch (NoSuchElementException e) {
+            return;
+        }
 
         System.out.printf(
                 "\nWhat would you like to do with the %s recipe?\n",

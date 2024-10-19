@@ -4,8 +4,10 @@ import datastorage.RecipeBank;
 
 import domain.Ingredient;
 import domain.MeasurementUnit;
+import domain.NamedObject;
 import domain.Recipe;
 import domain.RecipeCategory;
+import domain.ShoppingList;
 
 import ui.util.TUIInput;
 
@@ -194,18 +196,15 @@ public class TUI {
         }
         System.out.println(); // Output format
 
-        int choice = pickListIndex(choices);
-        switch (choice + 1) {
-            case 1 -> System.out.println(recipe);
-            case 2 -> {
-                System.out.println(toInitialUpperCase(recipe.getName()) + " Ingredients\n");
-                List<Ingredient> ingredients = recipe.getIngredients();
-                for (Ingredient ingredient : ingredients) {
-                    System.out.println(ingredient);
-                }
+        NamedObject namedObject = null;
+        while (namedObject == null) {
+            int choice = pickListIndex(choices);
+            switch (choice + 1) {
+                case 1 -> namedObject = recipe;
+                case 2 -> namedObject = new ShoppingList(recipe.getIngredients());
             }
         }
-        System.out.println(); // Output format
+        System.out.println("\n" + namedObject + "\n");
     }
 
     private void delete() {

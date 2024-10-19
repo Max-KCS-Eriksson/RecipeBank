@@ -5,6 +5,7 @@ import datastorage.RecipeBank;
 import domain.Ingredient;
 import domain.MeasurementUnit;
 import domain.Recipe;
+import domain.RecipeCategory;
 
 import ui.util.TUIInput;
 
@@ -65,6 +66,15 @@ public class TUI {
                 System.out.println(e.getMessage() + ". Try again.");
             }
         }
+
+        System.out.println("\nCategory from below list:");
+        RecipeCategory[] categories = {
+            RecipeCategory.MEAL, RecipeCategory.DESSERT, RecipeCategory.PASTRY
+        };
+        for (int i = 0; i < categories.length; i++) {
+            System.out.println((i + 1) + ")\t" + toInitialUpperCase(categories[i].toString()));
+        }
+        recipe.setCategory(selectFromList(categories));
 
         ArrayList<Ingredient> ingredients = new ArrayList<>();
         int minimumIngredients = 2;

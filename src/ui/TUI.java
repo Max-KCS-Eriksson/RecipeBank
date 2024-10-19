@@ -22,6 +22,10 @@ public class TUI {
     private TUIInput scanner = new TUIInput();
     private RecipeBank recipeBank;
 
+    private RecipeCategory[] recipeCategories = {
+        RecipeCategory.MEAL, RecipeCategory.DESSERT, RecipeCategory.PASTRY
+    };
+
     public TUI(RecipeBank recipeBank) {
         this.recipeBank = recipeBank;
     }
@@ -68,13 +72,8 @@ public class TUI {
         }
 
         System.out.println("\nCategory from below list:");
-        RecipeCategory[] categories = {
-            RecipeCategory.MEAL, RecipeCategory.DESSERT, RecipeCategory.PASTRY
-        };
-        for (int i = 0; i < categories.length; i++) {
-            System.out.println((i + 1) + ")\t" + toInitialUpperCase(categories[i].toString()));
-        }
-        recipe.setCategory(selectFromList(categories));
+        printRecipeCategories();
+        recipe.setCategory(selectFromList(recipeCategories));
 
         ArrayList<Ingredient> ingredients = new ArrayList<>();
         int minimumIngredients = 2;
@@ -176,7 +175,9 @@ public class TUI {
     }
 
     private void show() {
-        Optional<Recipe> optional = selectRecipeFromStorage();
+        List<Recipe> recipes = recipesByCategory();
+
+        Optional<Recipe> optional = selectRecipeFromStorage(recipes);
         Recipe recipe;
         try {
             recipe = optional.get();
@@ -208,7 +209,9 @@ public class TUI {
     }
 
     private void delete() {
-        Optional<Recipe> optional = selectRecipeFromStorage();
+        List<Recipe> recipes = recipesByCategory();
+
+        Optional<Recipe> optional = selectRecipeFromStorage(recipes);
         Recipe recipe;
         try {
             recipe = optional.get();
@@ -220,8 +223,7 @@ public class TUI {
         System.out.println("\n" + toInitialUpperCase(recipe.getName()) + " Recipe was deleted.\n");
     }
 
-    private Optional<Recipe> selectRecipeFromStorage() {
-        List<Recipe> recipes = recipeBank.getStorage();
+    private Optional<Recipe> selectRecipeFromStorage(List<Recipe> recipes) {
         System.out.println("\nRecipes:");
         if (recipes.size() == 0) {
             System.out.println("No recipes stored yet.\n");
@@ -236,6 +238,28 @@ public class TUI {
         Recipe recipe = selectFromList(recipes);
 
         return Optional.of(recipe);
+    }
+
+    private void printRecipeCategories() {
+        for (int i = 0; i < recipeCategories.length; i++) {
+            System.out.println(
+                    (i + 1) + ")\t" + toInitialUpperCase(recipeCategories[i].toString()));
+        }
+    }
+
+    private List<Recipe> recipesByCategory() {
+        printRecipeCategories();
+        System.out.println(); // Output format
+
+        RecipeCategory category = selectFromList(recipeCategories);
+        List<Recipe> byCategory = new ArrayList<>();
+        List<Recipe> recipes = recipeBank.getStorage();
+        for (Recipe recipe : recipes) {
+            if (recipe.getCategory().equals(category)) {
+                byCategory.add(recipe);
+            }
+        }
+        return byCategory;
     }
 
     private <T> int pickListIndex(T[] arr) {

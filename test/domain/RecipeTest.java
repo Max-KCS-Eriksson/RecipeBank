@@ -19,7 +19,7 @@ public class RecipeTest {
         List<String> instructions = new ArrayList<>();
         instructions.add("First");
 
-        Recipe ingredient = new Recipe(title, ingredients, instructions);
+        Recipe ingredient = new Recipe(title, ingredients, instructions, RecipeCategory.DESSERT);
 
         assertEquals(title.toLowerCase(), ingredient.getName());
     }
@@ -34,7 +34,7 @@ public class RecipeTest {
         instructions.add("First");
 
         assertThrows(
-                IllegalArgumentException.class, () -> new Recipe(title, ingredients, instructions));
+                IllegalArgumentException.class, () -> new Recipe(title, ingredients, instructions, RecipeCategory.DESSERT));
     }
 
     @Test
@@ -47,7 +47,7 @@ public class RecipeTest {
         instructions.add("First");
 
         assertThrows(
-                IllegalArgumentException.class, () -> new Recipe(title, ingredients, instructions));
+                IllegalArgumentException.class, () -> new Recipe(title, ingredients, instructions, RecipeCategory.DESSERT));
     }
 
     @Test
@@ -78,7 +78,7 @@ public class RecipeTest {
         instructions.add("Mix in half of the milk.");
         instructions.add("Mix in the eggs and the rest of the milk.");
         instructions.add("Pour batter into hot pan and fry on both sides.");
-        Recipe recipe = new Recipe(title, ingredients, instructions);
+        Recipe recipe = new Recipe(title, ingredients, instructions, RecipeCategory.MEAL);
 
         assertEquals(expected, recipe.toString());
     }

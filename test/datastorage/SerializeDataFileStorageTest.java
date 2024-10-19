@@ -1,11 +1,9 @@
 package datastorage;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import domain.Ingredient;
 import domain.MeasurementUnit;
 import domain.Recipe;
-
+import domain.RecipeCategory;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -13,6 +11,8 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SerializeDataFileStorageTest {
 
@@ -34,12 +34,12 @@ public class SerializeDataFileStorageTest {
         ingredients.add(new Ingredient("buzz", 1, MeasurementUnit.DECILITRES));
         instructions.add("fizz");
         instructions.add("buzz");
-        recipes.add(new Recipe("foo", ingredients, instructions));
+        recipes.add(new Recipe("foo", ingredients, instructions, RecipeCategory.MEAL));
 
         ingredients.add(new Ingredient("fizzbuzz", 1, MeasurementUnit.PIECES));
         ingredients.add(new Ingredient("bar", 1, MeasurementUnit.GRAMS));
         instructions.add("fizzbuzz");
-        recipes.add(new Recipe("bar", ingredients, instructions));
+        recipes.add(new Recipe("bar", ingredients, instructions, RecipeCategory.DESSERT));
     }
 
     @AfterAll

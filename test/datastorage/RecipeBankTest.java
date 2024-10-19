@@ -3,6 +3,7 @@ package datastorage;
 import domain.Ingredient;
 import domain.MeasurementUnit;
 import domain.Recipe;
+import domain.RecipeCategory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -31,8 +32,8 @@ public class RecipeBankTest {
         ingredients.add(new Ingredient("ingredient", 1, MeasurementUnit.GRAMS));
         ArrayList<String> instructions = new ArrayList<>();
         instructions.add("instruction");
-        dummyRecipe = new Recipe("foo", ingredients, instructions);
-        anotherRecipe = new Recipe("bar", ingredients, instructions);
+        dummyRecipe = new Recipe("foo", ingredients, instructions, RecipeCategory.PASTRY);
+        anotherRecipe = new Recipe("bar", ingredients, instructions, RecipeCategory.DESSERT);
     }
 
     @AfterEach

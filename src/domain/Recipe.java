@@ -7,15 +7,21 @@ public class Recipe extends NamedObject {
 
     private List<Ingredient> ingredients;
     private List<String> instructions;
+    private RecipeCategory category;
 
     public Recipe() {
         super();
     }
 
-    public Recipe(String name, List<Ingredient> ingredients, List<String> instructions) {
+    public Recipe(
+            String name,
+            List<Ingredient> ingredients,
+            List<String> instructions,
+            RecipeCategory category) {
         setName(name);
         setIngredients(ingredients);
         setInstructions(instructions);
+        setCategory(category);
     }
 
     public List<Ingredient> getIngredients() {
@@ -32,6 +38,14 @@ public class Recipe extends NamedObject {
 
     public void setInstructions(List<String> instructions) {
         this.instructions = instructions;
+    }
+
+    public RecipeCategory getCategory() {
+        return category;
+    }
+
+    public void setCategory(RecipeCategory category) {
+        this.category = category;
     }
 
     @Override

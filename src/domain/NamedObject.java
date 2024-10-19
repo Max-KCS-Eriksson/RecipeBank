@@ -19,4 +19,9 @@ public abstract class NamedObject implements Serializable {
         }
         this.name = name.toLowerCase();
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

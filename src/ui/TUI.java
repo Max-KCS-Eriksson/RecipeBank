@@ -248,6 +248,7 @@ public class TUI {
     }
 
     private List<Recipe> recipesByCategory() {
+        System.out.println("\nCategories:");
         printRecipeCategories();
         System.out.println(); // Output format
 

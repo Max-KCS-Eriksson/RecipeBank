@@ -1,9 +1,12 @@
 package datastorage;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import domain.Ingredient;
 import domain.MeasurementUnit;
 import domain.Recipe;
 import domain.RecipeCategory;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,8 +14,6 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RecipeBankTest {
 
@@ -58,6 +59,9 @@ public class RecipeBankTest {
     public void testDeleteRecipe() {
         recipeBank.add(dummyRecipe);
         recipeBank.add(anotherRecipe);
+        Recipe dublicateName = dummyRecipe;
+        dublicateName.setCategory(RecipeCategory.MEAL);
+        recipeBank.add(dublicateName);
         int expectedSize = recipeBank.read().size() - 1;
         recipeBank.delete(dummyRecipe);
         int actualSize = recipeBank.read().size();

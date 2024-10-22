@@ -3,7 +3,7 @@ package domain;
 import java.util.List;
 
 /** ShoppingList */
-public class ShoppingList extends NamedObject {
+public class ShoppingList {
 
     private List<Ingredient> ingredients;
 
